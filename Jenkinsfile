@@ -14,10 +14,7 @@ pipeline {
   stages {
     stage('Checkout Github') {
       steps {
-          checkout([$class: 'GitSCM', branches: [[name: '*/main']],
-extensions: [], userRemoteConfigs: [[credentialsId: 
-githubCredential, url: 
-'https://github.com/donkiid/sb_code.git']]])
+          checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: githubCredential, url: 'https://github.com/donkiid/sb_code.git']]])
         }
       post {
         failure {
