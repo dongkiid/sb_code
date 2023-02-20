@@ -8,8 +8,8 @@ pipeline {
     gitName = 'dongkiid'
     gitEmail = 'sieuri@naver.com'
     githubCredential = 'git_cre'
-    dockerHubRegistryCredential = 'docker_cre'
     dockerHubRegistry = 'dongkiid/sbimage'
+    dockerHubRegistryCredential = 'docker_cre'
   }
   
   stages {
@@ -55,18 +55,18 @@ pipeline {
      }
     }
    }
- stage('Docker Image Push') {
-      steps {
-          withDockerRegistry(credentialsId: dockerHubRegistryCredential, url: '') {  
+   stage('Docker Image Push') {
+     steps {
+        withDockerRegistry(credentialsId: dockerHubRegistryCredential, url: '') {  
             sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
             sh "docker push ${dockerHubRegistry}:latest"
           }  
       }
       post {
-        failure {
-          echo 'Docker Image Push failure'
-          sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
-          sh "docker rmi ${dockerHubRegistry}:latest"
+       failure {
+         echo 'Docker Image Push failure'
+         sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
+         sh "docker rmi ${dockerHubRegistry}:latest"
         }
         success {
           echo 'Docker Image Push success'
@@ -91,6 +91,6 @@ pipeline {
       }
     }
   }
- }
+}
 
 
