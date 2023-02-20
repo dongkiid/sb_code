@@ -8,6 +8,7 @@ pipeline {
     gitName = 'dongkiid'
     gitEmail = 'sieuri@naver.com'
     githubCredential = 'git_cre'
+    dockerHubRegistryCredential = 'docker_cre'
     dockerHubRegistry = 'dongkiid/sbimage'
   }
   
